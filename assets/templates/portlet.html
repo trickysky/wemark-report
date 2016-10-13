@@ -1,0 +1,21 @@
+{% for portlet in portlets %}
+    <div class="col-lg-{{ portlet.lg_pos|default:"6" }} col-md-{{ portlet.md_pos|default:"12" }} col-sm-{{ portlet.sm_pos|default:"12" }} col-xs-{{ portlet.xs_pos|default:"12" }}">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-{{ portlet.icon|default:"line-chart" }} font-{{ portlet.icon_color|default:"green-haze" }}"></i>
+                    <span class="caption-subject bold uppercase font-{{ portlet.font_color|default:"green-haze" }}">{{ portlet.name|default:"指标" }}</span>
+                    <span class="caption-helper">{{ portlet.desc|default:"统计指标" }}</span>
+                </div>
+            {% include portlet.actions %}
+            </div>
+            <div class="portlet-body">
+                <div id="site_statistics_loading" class="display-none">
+                    <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                {% if portlet.body_id %}
+                <div id="{{ portlet.body_id }}" {% if portlet.body_class %}class="{{ portlet.body_class }}" {% endif%}></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
