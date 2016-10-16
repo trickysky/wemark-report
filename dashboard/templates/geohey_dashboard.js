@@ -322,13 +322,72 @@ var dashboard = function () {
                 dayNames:["星期天","星期一","星期二","星期三","星期四","星期五","星期六"],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
 
-                "dataLoader": {
-                    "url": "../api/spider?mode=rank",
-                    "format": "json",
-                    "showErrors": true,
-                    "noStyles": true,
-                    "async": true
-                },
+                "dataProvider": [
+                    {
+                        "category": "自然相关",
+                        "自然相关_total": 86521938
+                    },
+                    {
+                        "category": "股票",
+                        "股票_total": 60180009
+                    },
+                    {
+                        "category": "批发零售",
+                        "批发零售_total": 53136885
+                    },
+                    {
+                        "category": "生活方式",
+                        "生活方式_total": 26944090
+                    },
+                    {
+                        "category": "房地产",
+                        "房地产_total": 9662622
+                    },
+                    {
+                        "category": "代理服务器",
+                        "代理服务器_total": 4740109
+                    },
+                    {
+                        "category": "旅游",
+                        "旅游_total": 3973745
+                    },
+                    {
+                        "category": "汽车",
+                        "汽车_total": 2717756
+                    },
+                    {
+                        "category": "行政区划",
+                        "行政区划_total": 1835195
+                    },
+                    {
+                        "category": "教育",
+                        "教育_total": 331070
+                    },
+                    {
+                        "category": "体育",
+                        "体育_total": 113312
+                    },
+                    {
+                        "category": "物流",
+                        "物流_total": 34715
+                    },
+                    {
+                        "category": "其他",
+                        "其他_total": 24947
+                    },
+                    {
+                        "category": "餐饮",
+                        "餐饮_total": 3822
+                    },
+                    {
+                        "category": "瓦片",
+                        "瓦片_total": 0
+                    },
+                    {
+                        "category": "公司",
+                        "公司_total": 0
+                    }
+                ],
 
                 valueAxes: [{
                     "stackType": "regular",
@@ -491,13 +550,33 @@ var dashboard = function () {
                   }
                 }]
               },
-              "dataLoader": {
-                    "url": "../api/spider?mode=formation&category=批发零售",
-                    "format": "json",
-                    "showErrors": true,
-                    "noStyles": true,
-                    "async": true
+              "dataProvider": [
+                {
+                    "category": "自然相关",
+                    "spider": "aqicn",
+                    "value": 39556689
                 },
+                {
+                    "category": "自然相关",
+                    "spider": "jrm",
+                    "value": 24733877
+                },
+                {
+                    "category": "自然相关",
+                    "spider": "weather_cn",
+                    "value": 13239895
+                },
+                {
+                    "category": "自然相关",
+                    "spider": "aqi_zhenqi",
+                    "value": 8817561
+                },
+                {
+                    "category": "自然相关",
+                    "spider": "chkvalid",
+                    "value": 175509
+                }
+            ],
               "valueField": "value",
               "titleField": "spider",
               "export": {

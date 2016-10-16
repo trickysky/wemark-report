@@ -25,7 +25,7 @@ SECRET_KEY = '_g0s^^4$juxr6bqxy&zp)fbs2)*ao!gnx%jybsr*-6&i-6n3c&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['']
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'report.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./assets'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
