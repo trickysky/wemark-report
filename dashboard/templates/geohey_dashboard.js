@@ -3,307 +3,291 @@
  * Optimize by TK on 1/14/16
  */
 
-var category,spider,startDate,endDate,mode;
-
-$('#action-trend label').bind('click', function () {
-    var scope = $(this).attr("id");
-    $(".portlet-body:eq(0) div:first").removeClass("display-none");
-    getTrendData(scope);
-});
-
-function getTrendData(scope) {
-    $.ajax({
-        type : 'GET',
-        url : '/api/spider',
-        data : {
-            scope : scope
-        },
-        success : function(data) {
+var dashboard = function () {
+    return {
+        initDataTrend: function () {
             if (typeof(AmCharts) === 'undefined' || $('#datatrend').size() === 0) {
                 return;
             }
-            var chart = AmCharts.makeChart("datatrend", getTrendChartConfig(scope, JSON.parse(data)));
-            $(".portlet-body:eq(0) div:first").addClass("display-none");
+
+            var chart = AmCharts.makeChart("datatrend", {
+                "type": "serial",
+                "categoryField": "date",
+                "dataDateFormat": "YYYY-MM-DD",
+                "startDuration": 1,
+                "startEffect": "bounce",
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "parseDates": true
+                },
+                "chartCursor": {
+                    "enabled": true,
+                    "categoryBalloonDateFormat": "MMM DD"
+                },
+                "trendLines": [],
+                "graphs": [
+                    {
+                        "accessibleLabel": "[[title]] : [[value]]",
+                        "balloonText": "[[title]] : [[value]]",
+                        "bullet": "round",
+                        "id": "AmGraph-1",
+                        "labelText": "",
+                        "lineAlpha": 0.87,
+                        "lineThickness": 3,
+                        "showAllValueLabels": true,
+                        "title": "扫码数",
+                        "valueField": "scan"
+                    },
+                    {
+                        "accessibleLabel": "[[title]] : [[value]]",
+                        "balloonText": "[[title]] : [[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "labelText": "[[value]]",
+                        "title": "兑奖数",
+                        "type": "column",
+                        "valueField": "confirm"
+                    }
+                ],
+                "guides": [],
+                "valueAxes": [
+                    {
+                        "id": "ValueAxis-1",
+                        "title": "次数"
+                    }
+                ],
+                "allLabels": [],
+                "balloon": {},
+                "legend": {
+                    "enabled": true,
+                    "align": "center",
+                    "position": "top",
+                    "valueAlign": "left"
+                },
+                "titles": [],
+                "dataProvider": [
+                    // {
+                    //     "date": "2016-09-18",
+                    //     "scan": "2576",
+                    //     "confirm": "180"
+                    // },
+                    // {
+                    //     "date": "2016-09-19",
+                    //     "scan": "2382",
+                    //     "confirm": "892"
+                    // },
+                    // {
+                    //     "date": "2016-09-20",
+                    //     "scan": "2909",
+                    //     "confirm": "559"
+                    // },
+                    // {
+                    //     "date": "2016-09-21",
+                    //     "scan": "2986",
+                    //     "confirm": "728"
+                    // },
+                    // {
+                    //     "date": "2016-09-22",
+                    //     "scan": "2348",
+                    //     "confirm": "755"
+                    // },
+                    // {
+                    //     "date": "2016-09-23",
+                    //     "scan": "3292",
+                    //     "confirm": "765"
+                    // },
+                    // {
+                    //     "date": "2016-09-24",
+                    //     "scan": "3375",
+                    //     "confirm": "646"
+                    // },
+                    // {
+                    //     "date": "2016-09-25",
+                    //     "scan": "2959",
+                    //     "confirm": "521"
+                    // },
+                    {
+                        "date": "2016-09-26",
+                        "scan": "2810",
+                        "confirm": "345"
+                    },
+                    {
+                        "date": "2016-09-27",
+                        "scan": "2763",
+                        "confirm": "988"
+                    },
+                    {
+                        "date": "2016-09-28",
+                        "scan": "2966",
+                        "confirm": "666"
+                    },
+                    {
+                        "date": "2016-09-29",
+                        "scan": "2284",
+                        "confirm": "381"
+                    },
+                    {
+                        "date": "2016-09-30",
+                        "scan": "3656",
+                        "confirm": "982"
+                    },
+                    {
+                        "date": "2016-10-01",
+                        "scan": "2153",
+                        "confirm": "416"
+                    },
+                    {
+                        "date": "2016-10-02",
+                        "scan": "2020",
+                        "confirm": "272"
+                    },
+                    {
+                        "date": "2016-10-03",
+                        "scan": "2075",
+                        "confirm": "299"
+                    },
+                    {
+                        "date": "2016-10-04",
+                        "scan": "2129",
+                        "confirm": "276"
+                    },
+                    {
+                        "date": "2016-10-05",
+                        "scan": "2464",
+                        "confirm": "361"
+                    },
+                    {
+                        "date": "2016-10-06",
+                        "scan": "2252",
+                        "confirm": "281"
+                    },
+                    {
+                        "date": "2016-10-07",
+                        "scan": "2079",
+                        "confirm": "268"
+                    },
+                    {
+                        "date": "2016-10-08",
+                        "scan": "2194",
+                        "confirm": "411"
+                    },
+                    {
+                        "date": "2016-10-09",
+                        "scan": "3474",
+                        "confirm": "377"
+                    },
+                    {
+                        "date": "2016-10-10",
+                        "scan": "2313",
+                        "confirm": "440"
+                    },
+                    {
+                        "date": "2016-10-11",
+                        "scan": "3445",
+                        "confirm": "263"
+                    },
+                    {
+                        "date": "2016-10-12",
+                        "scan": "3339",
+                        "confirm": "267"
+                    },
+                    {
+                        "date": "2016-10-13",
+                        "scan": "3650",
+                        "confirm": "261"
+                    },
+                    {
+                        "date": "2016-10-14",
+                        "scan": "3392",
+                        "confirm": "260"
+                    },
+                    {
+                        "date": "2016-10-15",
+                        "scan": "2510",
+                        "confirm": "507"
+                    },
+                    {
+                        "date": "2016-10-16",
+                        "scan": "3344",
+                        "confirm": "638"
+                    }
+                ]
+            });
         },
-        error : function(xhr, status, error) {
-
-        }
-    });
-}
-
-function getTrendChartConfig(scope, data) {
-    var datatrend = {
-        "type": "serial",
-        "fontSize": 12,
-        "fontFamily": "Ubuntu",
-        "dataDateFormat": "YYYY-MM-DD JJ:NN",
-        "dayNames": ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"],
-        "monthNames": ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-        "legend": {
-            "equalWidths": false,
-            "periodValueText": "total: [[value.sum]]",
-            "position": "top",
-            "valueAlign": "left",
-            "valueWidth": 100
-        },
-        "dataProvider": data,
-        "valueAxes": [{
-            "stackType": "regular",
-            "gridAlpha": 0.07,
-            "position": "left",
-            "title": "数据量"
-        }],
-        "categoryField": "date",
-        "categoryAxis": {
-            startOnAxis: true,
-            parseDates: true,
-            minPeriod: "3DD",
-            autoGridCount: false,
-            gridCount: 50,
-            gridAlpha: 0.1,
-            gridColor: "#FFFFFF",
-            axisColor: "#555555",
-            title:"时间",
-            dateFormats: [{
-                period: 'DD',
-                format: 'D'
-            }, {
-                period: 'MM',
-                format: 'MMM'
-            }, {
-                period: 'YYYY',
-                format: 'YYYY'
-            }]
-        },
-
-        "export": {
-            "enabled": true
-        },
-
-        "graphs": [{
-            "type":"line",
-            "balloonText": "错误 [[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "错误数据",
-            "valueField": "error",
-            "legendPeriodValueText": "[[value]]",
-            "color": "#E6434E"
-        },{
-            "type":"line",
-            "balloonText": "更新 [[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "更新数据",
-            "valueField": "update",
-            "legendPeriodValueText": "[[value]]",
-            "color": "#23B679"
-        },{
-            "type":"line",
-            "balloonText": "新增 [[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "新增数据",
-            "valueField": "new",
-            "legendPeriodValueText": "[[value]]",
-            "color": "#E5B700"
-        } ],
-        "chartCursor": {
-            zoomable: false,
-            categoryBalloonDateFormat: "MMM-D",
-            "cursorAlpha": 0}
-    }
-    if (scope == 'week') {
-        datatrend.categoryAxis.minPeriod = "14DD";
-    }
-    if (scope == 'month') {
-        datatrend.categoryAxis.minPeriod = "MM";
-        datatrend.chartCursor.categoryBalloonDateFormat = "MMM";
-    }
-    if (scope == 'year') {
-        datatrend.categoryAxis.minPeriod = "YYYY";
-        datatrend.chartCursor.categoryBalloonDateFormat = "YYYY";
-    }
-    return datatrend;
-}
-
-$('#action-balance label').bind('click', function () {
-    var scope = $(this).attr("id");
-    $(".portlet-body:eq(1) div:first").removeClass("display-none");
-    getBalanceData(scope);
-});
-$('#action-balance-type label').bind('click', function () {
-    var scope = $("#action-balance .active").attr("id");
-    $(".portlet-body:eq(1) div:first").removeClass("display-none");
-    getBalanceData(scope);
-});
-
-function getBalanceData(scope) {
-    $.ajax({
-        type : 'GET',
-        url : '/api/spider',
-        data : {
-            mode: "balance",
-            scope : scope
-        },
-        success : function(data) {
+        initSpiderBalance: function () {
             if (typeof(AmCharts) === 'undefined' || $('#spiderbalance').size() === 0) {
                 return;
             }
-            var type = $("#action-balance-type .active").attr("id");
-            var chart = AmCharts.makeChart("spiderbalance", getBalanceChartConfig(scope, JSON.parse(data), type));
-            $(".portlet-body:eq(1) div:first").addClass("display-none");
-        },
-        error : function(xhr, status, error) {
 
-        }
-    });
-}
-
-function getBalanceChartConfig(scope, data, type) {
-    var balanceChartConfig = {
-        "type": "serial",
-        "theme": "light",
-        "legend": {
-            "horizontalGap": 10,
-            "maxColumns": 1,
-            "position": "right",
-            "useGraphSettings": true,
-            "markerSize": 10
+            var chart = AmCharts.makeChart("spiderbalance", {
+                "type": "pie",
+                "startDuration": 0,
+                "theme": "light",
+                "addClassNames": true,
+                "legend": {
+                    "position": "right",
+                    "marginRight": 100,
+                    "autoMargins": false
+                },
+                "innerRadius": "30%",
+                "radius": "30%",
+                "defs": {
+                    "filter": [{
+                        "id": "shadow",
+                        "width": "200%",
+                        "height": "200%",
+                        "feOffset": {
+                            "result": "offOut",
+                            "in": "SourceAlpha",
+                            "dx": 0,
+                            "dy": 0
+                        },
+                        "feGaussianBlur": {
+                            "result": "blurOut",
+                            "in": "offOut",
+                            "stdDeviation": 5
+                        },
+                        "feBlend": {
+                            "in": "SourceGraphic",
+                            "in2": "blurOut",
+                            "mode": "normal"
+                        }
+                    }]
+                },
+                "dataProvider": [
+                    {
+                        "category": "自然相关",
+                        "spider": "aqicn",
+                        "value": 39556689
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "jrm",
+                        "value": 24733877
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "weather_cn",
+                        "value": 13239895
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "aqi_zhenqi",
+                        "value": 8817561
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "chkvalid",
+                        "value": 175509
+                    }
+                ],
+                "valueField": "value",
+                "titleField": "spider",
+                "export": {
+                    "enabled": true
+                }
+            });
         },
-        dayNames:["星期天","星期一","星期二","星期三","星期四","星期五","星期六"],
-        monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-        "dataProvider": data,
-        valueAxes: [{
-            "stackType": "regular",
-            "axisAlpha": 0.3,
-            "gridAlpha": 0
-        }],
-        categoryField: "scope",
-        categoryAxis: {
-            "gridPosition": "start",
-            "axisAlpha": 0,
-            "gridAlpha": 0,
-            "position": "left",
-        },
-        "graphs": [{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "自然相关",
-            "valueField": "自然相关_time",
-            legendPeriodValueText:"[[value]]",
-            "color": "#e7505a"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "房地产",
-            "valueField": "房地产_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "代理服务器",
-            "valueField": "代理服务器_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "股票",
-            "valueField": "股票_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "教育",
-            "valueField": "教育_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "交通",
-            "valueField": "交通_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "汽车",
-            "valueField": "汽车_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "旅游",
-            "valueField": "旅游_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "餐饮",
-            "valueField": "餐饮_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "批发零售",
-            "valueField": "批发零售_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "生活方式",
-            "valueField": "生活方式_time",
-            legendPeriodValueText:"[[value]]"
-        },{
-            "type":"column",
-            "balloonText": "[[title]]耗时：[[value]]",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "行政区划",
-            "valueField": "行政区划_time",
-            legendPeriodValueText:"[[value]]"
-        } ]
-    }
-    if (type == "absolute") {
-        balanceChartConfig.valueAxes[0].stackType = "regular";
-    }
-    else if (type == "relative") {
-        balanceChartConfig.valueAxes[0].stackType = "100%";
-    }
-    if (scope == "dow") {
-        var dowData = data;
-        var week_cn = ["周日","周一","周二","周三","周四","周五","周六"];
-        for (var i=0; i<7; i++) {
-            dowData[i].scope = week_cn[i];
-        }
-        balanceChartConfig.dataProvider = dowData;
-    }
-    return balanceChartConfig;
-}
-
-var dashboard = function () {
-    return {
         initDataRank: function () {
             if (typeof(AmCharts) === 'undefined' || $('#datarank').size() === 0) {
                 return;
@@ -319,8 +303,8 @@ var dashboard = function () {
                     "useGraphSettings": true,
                     "markerSize": 10
                 },
-                dayNames:["星期天","星期一","星期二","星期三","星期四","星期五","星期六"],
-                monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+                dayNames: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
 
                 "dataProvider": [
                     {
@@ -407,105 +391,105 @@ var dashboard = function () {
 
                 "export": {
                     "enabled": true
-                 },
+                },
 
                 "graphs": [{
-                    "type":"column",
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "汽车",
                     "valueField": "汽车_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "股票",
                     "valueField": "股票_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "自然相关",
                     "valueField": "自然相关_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "交通",
                     "valueField": "交通_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "房地产",
                     "valueField": "房地产_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "代理服务器",
                     "valueField": "代理服务器_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "旅游",
                     "valueField": "旅游_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "教育",
                     "valueField": "教育_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "餐饮",
                     "valueField": "餐饮_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "生活方式",
                     "valueField": "生活方式_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "行政区划",
                     "valueField": "行政区划_total",
-                    legendPeriodValueText:"[[value]]"
-                },{
-                    "type":"column",
+                    legendPeriodValueText: "[[value]]"
+                }, {
+                    "type": "column",
                     "balloonText": "[[title]]：[[value]]",
                     "fillAlphas": 0.6,
                     "lineAlpha": 0.4,
                     "title": "批发零售",
                     "valueField": "批发零售_total",
-                    legendPeriodValueText:"[[value]]",
-                } ]
+                    legendPeriodValueText: "[[value]]",
+                }]
 
 
             });
@@ -516,77 +500,77 @@ var dashboard = function () {
             }
 
             var chart = AmCharts.makeChart("dataformation", {
-              "type": "pie",
-              "startDuration": 0,
-               "theme": "light",
-              "addClassNames": true,
-              "legend":{
-                "position":"right",
-                "marginRight":100,
-                "autoMargins":false
-              },
-              "innerRadius": "30%",
-                "radius":"30%",
-              "defs": {
-                "filter": [{
-                  "id": "shadow",
-                  "width": "200%",
-                  "height": "200%",
-                  "feOffset": {
-                    "result": "offOut",
-                    "in": "SourceAlpha",
-                    "dx": 0,
-                    "dy": 0
-                  },
-                  "feGaussianBlur": {
-                    "result": "blurOut",
-                    "in": "offOut",
-                    "stdDeviation": 5
-                  },
-                  "feBlend": {
-                    "in": "SourceGraphic",
-                    "in2": "blurOut",
-                    "mode": "normal"
-                  }
-                }]
-              },
-              "dataProvider": [
-                {
-                    "category": "自然相关",
-                    "spider": "aqicn",
-                    "value": 39556689
+                "type": "pie",
+                "startDuration": 0,
+                "theme": "light",
+                "addClassNames": true,
+                "legend": {
+                    "position": "right",
+                    "marginRight": 100,
+                    "autoMargins": false
                 },
-                {
-                    "category": "自然相关",
-                    "spider": "jrm",
-                    "value": 24733877
+                "innerRadius": "30%",
+                "radius": "30%",
+                "defs": {
+                    "filter": [{
+                        "id": "shadow",
+                        "width": "200%",
+                        "height": "200%",
+                        "feOffset": {
+                            "result": "offOut",
+                            "in": "SourceAlpha",
+                            "dx": 0,
+                            "dy": 0
+                        },
+                        "feGaussianBlur": {
+                            "result": "blurOut",
+                            "in": "offOut",
+                            "stdDeviation": 5
+                        },
+                        "feBlend": {
+                            "in": "SourceGraphic",
+                            "in2": "blurOut",
+                            "mode": "normal"
+                        }
+                    }]
                 },
-                {
-                    "category": "自然相关",
-                    "spider": "weather_cn",
-                    "value": 13239895
-                },
-                {
-                    "category": "自然相关",
-                    "spider": "aqi_zhenqi",
-                    "value": 8817561
-                },
-                {
-                    "category": "自然相关",
-                    "spider": "chkvalid",
-                    "value": 175509
+                "dataProvider": [
+                    {
+                        "category": "自然相关",
+                        "spider": "aqicn",
+                        "value": 39556689
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "jrm",
+                        "value": 24733877
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "weather_cn",
+                        "value": 13239895
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "aqi_zhenqi",
+                        "value": 8817561
+                    },
+                    {
+                        "category": "自然相关",
+                        "spider": "chkvalid",
+                        "value": 175509
+                    }
+                ],
+                "valueField": "value",
+                "titleField": "spider",
+                "export": {
+                    "enabled": true
                 }
-            ],
-              "valueField": "value",
-              "titleField": "spider",
-              "export": {
-                "enabled": true
-              }
             });
         },
         init: function () {
-            //this.initDataTrend();
-            //this.initSpiderBalance();
+            this.initDataTrend();
+            this.initSpiderBalance();
             this.initDataRank();
             this.initDataFormation();
         }
@@ -597,7 +581,5 @@ var dashboard = function () {
 if (App.isAngularJsApp() === false) {
     jQuery(document).ready(function () {
         dashboard.init(); // init metronic core componets
-        getTrendData('day')
-        getBalanceData('day')
     });
 }
