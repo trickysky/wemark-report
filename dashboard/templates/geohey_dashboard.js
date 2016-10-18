@@ -173,7 +173,7 @@ var dashboard = function () {
                     },
                     {
                         "date": "2016-10-09",
-                        "scan": "3474",
+                        "scan": "2203",
                         "confirm": "377"
                     },
                     {
@@ -183,7 +183,7 @@ var dashboard = function () {
                     },
                     {
                         "date": "2016-10-11",
-                        "scan": "3445",
+                        "scan": "2745",
                         "confirm": "263"
                     },
                     {
@@ -203,7 +203,7 @@ var dashboard = function () {
                     },
                     {
                         "date": "2016-10-15",
-                        "scan": "2510",
+                        "scan": "3510",
                         "confirm": "507"
                     },
                     {
