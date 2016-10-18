@@ -6,14 +6,12 @@ $('.login').on('submit', function(e) {
   var $this = $(this),
     $state = $this.find('button > .state');
   $this.addClass('loading');
-  $state.html('Authenticating');
+  $state.html('登录中...');
   setTimeout(function() {
     $this.addClass('ok');
-    $state.html('Welcome back!');
+    $state.html('欢迎回来!');
     setTimeout(function() {
-      $state.html('Log in');
-      $this.removeClass('ok loading');
-      working = false;
-    }, 4000);
-  }, 3000);
+      window.location.href='../dashboard'
+    }, 1000);
+  }, 2000);
 });

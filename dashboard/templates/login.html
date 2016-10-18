@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Animated login form</title>
+    <title>微码凌科 | 登录</title>
     {% block css %}
         <link href="../assets/global/plugins/normalize.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href='../assets/global/plugins/googleapis.css' rel='stylesheet' type='text/css'>
     {% endblock %}
     <style>
     /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
@@ -193,18 +193,17 @@
 <body>
     <div class="wrapper">
         <form class="login">
-            <p class="title">Log in</p>
-            <input type="text" placeholder="Username" autofocus/>
+            <p class="title">登录</p>
+            <input type="text" placeholder="用户名" autofocus/>
             <i class="fa fa-user"></i>
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="密码" />
             <i class="fa fa-key"></i>
-            <a href="#">Forgot your password?</a>
+            <a href="#">忘记密码</a>
             <button>
                 <i class="spinner"></i>
-                <span class="state">Log in</span>
+                <span class="state">登录</span>
             </button>
         </form>
-        <footer><a target="blank" href="http://boudra.me/">boudra.me</a></footer>
         </p>
     </div>
 

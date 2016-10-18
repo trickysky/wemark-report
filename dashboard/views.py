@@ -24,8 +24,6 @@ def set_index():
 
 
 def get_dashboard():
-	stat_data = {'error': 2050236, 'period': datetime.timedelta(0, 900, 957177), 'total': 863625778,
-	             'update': 365760996}
 	confs = defaultdict(dict)
 
 	confs[0] = {'lg_pos': 3, 'md_pos': 3, 'sm_pos': 6, 'xm_pos': 12, 'color': 'blue', 'icon': 'bar-chart',
@@ -36,7 +34,7 @@ def get_dashboard():
 	            'name': u'总奖金', 'value': u'5,000,000', 'unit': u'元'}
 	confs[3] = {'lg_pos': 3, 'md_pos': 3, 'sm_pos': 6, 'xm_pos': 12, 'color': 'red', 'icon': 'exclamation-triangle',
 	            'name': u'已兑奖金额',
-	            'value': u'1,946,302', 'unit': u'元'}
+	            'value': u'1,146,302', 'unit': u'元'}
 	return confs
 
 
