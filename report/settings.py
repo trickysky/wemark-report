@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'report.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
+        'NAME': 'django',
         'USER': 'postgres',
         'PASSWORD': 'tk0306',
         'HOST': '127.0.0.1',
