@@ -242,24 +242,36 @@ var dashboard = function () {
                 "titles": [],
                 "dataProvider": [
                     {
-                        "category": "产品 1",
-                        "column-1": 8
+                        "category": "百威",
+                        "column-1": 6570
                     },
                     {
-                        "category": "产品 2",
-                        "column-1": 6
+                        "category": "百威纯生",
+                        "column-1": 4021
                     },
                     {
-                        "category": "产品 3",
-                        "column-1": "2"
+                        "category": "哈尔滨小麦王",
+                        "column-1": 4901
                     },
                     {
-                        "category": "产品 4",
-                        "column-1": "3"
+                        "category": "哈尔滨冰爽",
+                        "column-1": 4210
                     },
                     {
-                        "category": "产品 5",
-                        "column-1": "5"
+                        "category": "哈尔滨冰畅",
+                        "column-1": 2121
+                    },
+                    {
+                        "category": "哈尔滨清爽",
+                        "column-1": 2039
+                    },
+                    { 
+                        "category": "大富豪", 
+                        "column-1": 1039 
+                    },
+                    { 
+                        "category": "雪津", 
+                        "column-1": 2039 
                     }
                 ]
             });

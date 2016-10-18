@@ -46,10 +46,10 @@ def get_charts():
 	confs[1] = {'lg_pos': 6, 'md_pos': 12, 'sm_pos': 12, 'xm_pos': 12, 'icon': 'calendar', 'icon_color': 'red-sunglo',
 	            'font_color': 'red-sunglo', 'name': u'区域分布', 'desc': u'用户扫码地点分布',
 	            'actions': "brief/balance_actions.html", 'body_id': 'spiderbalance', 'body_class': 'CSSAnimationChart'}
-	confs[2] = {'lg_pos': 6, 'md_pos': 12, 'sm_pos': 12, 'xm_pos': 12, 'icon': 'list-ol', 'icon_color': 'yellow',
+	confs[2] = {'lg_pos': 6, 'md_pos': 12, 'sm_pos': 12, 'xm_pos': 12, 'icon': 'pie-chart', 'icon_color': 'yellow',
 	            'font_color': 'yellow', 'name': u'产品类型', 'desc': u'不同产品的扫码数和兑奖数量',
 	            'actions': "brief/filter_order_actions.html", 'body_id': 'datarank', 'body_class': 'CSSAnimationChart'}
-	confs[3] = {'lg_pos': 6, 'md_pos': 12, 'sm_pos': 12, 'xm_pos': 12, 'icon': 'pie-chart',
+	confs[3] = {'lg_pos': 6, 'md_pos': 12, 'sm_pos': 12, 'xm_pos': 12, 'icon': 'list-ol',
 	            'icon_color': 'purple-sharp', 'font_color': 'purple-sharp', 'name': u'奖池状态', 'desc': u'显示奖池兑奖情况',
 	            'actions': "brief/filter_actions.html", 'body_id': 'dataformation', 'body_class': 'CSSAnimationChart'}
 	return confs
