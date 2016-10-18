@@ -225,10 +225,11 @@ var dashboard = function () {
             var chart = AmCharts.makeChart("datarank", {
                 "type": "pie",
                 "angle": 12,
-                "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+                "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]次</b> ([[percents]]%)</span>",
                 "depth3D": 15,
                 "titleField": "category",
                 "valueField": "column-1",
+                "percentPrecision": 1,
                 "allLabels": [],
                 "balloon": {},
                 "legend": {
@@ -269,7 +270,58 @@ var dashboard = function () {
             }
 
             var chart = AmCharts.makeChart("dataformation", {
-
+                "type": "gauge",
+                "startDuration": 5,
+                "startEffect": "easeOutSine",
+                "arrows": [
+                    {
+                        "id": "GaugeArrow-1",
+                        "value": 114
+                    }
+                ],
+                "axes": [
+                    {
+                        "bottomText": "1,146,302 元",
+                        "bottomTextColor": "#00CC00",
+                        "bottomTextFontSize": 21,
+                        "bottomTextYOffset": -20,
+                        "endValue": 500,
+                        "id": "GaugeAxis-1",
+                        "unit": " 万元",
+                        "valueInterval": 50,
+                        "bands": [
+                            {
+                                "color": "#00CC00",
+                                "endValue": 250,
+                                "id": "GaugeBand-1",
+                                "startValue": 0
+                            },
+                            {
+                                "color": "#ffac29",
+                                "endValue": 400,
+                                "id": "GaugeBand-2",
+                                "innerRadius": "96%",
+                                "startValue": 250
+                            },
+                            {
+                                "color": "#ea3838",
+                                "endValue": 500,
+                                "id": "GaugeBand-3",
+                                "innerRadius": "94%",
+                                "startValue": 400
+                            }
+                        ]
+                    }
+                ],
+                "allLabels": [],
+                "balloon": {},
+                "titles": [
+                    {
+                        "id": "Title-1",
+                        "size": 15,
+                        "text": "奖金池兑奖情况"
+                    }
+                ]
             });
         },
         init: function () {
