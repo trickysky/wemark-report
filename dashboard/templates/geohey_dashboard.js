@@ -15,6 +15,9 @@ var dashboard = function () {
                 "categoryField": "date",
                 "dataDateFormat": "YYYY-MM-DD",
                 "startDuration": 1,
+                "export": {
+                    "enabled": true
+                },
                 "startEffect": "easeInSine",
                 "categoryAxis": {
                     "gridPosition": "start",
@@ -230,6 +233,9 @@ var dashboard = function () {
                 "titleField": "category",
                 "valueField": "column-1",
                 "percentPrecision": 1,
+                "export": {
+                    "enabled": true
+                },
                 "allLabels": [],
                 "balloon": {},
                 "legend": {
@@ -285,6 +291,9 @@ var dashboard = function () {
                 "type": "gauge",
                 "startDuration": 5,
                 "startEffect": "easeOutSine",
+                "export": {
+                    "enabled": true
+                },
                 "arrows": [
                     {
                         "id": "GaugeArrow-1",
