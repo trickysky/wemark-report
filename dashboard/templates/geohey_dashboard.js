@@ -226,58 +226,109 @@ var dashboard = function () {
             }
 
             var chart = AmCharts.makeChart("datarank", {
-                "type": "pie",
-                "angle": 12,
-                "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]次</b> ([[percents]]%)</span>",
-                "depth3D": 15,
-                "titleField": "category",
-                "valueField": "column-1",
-                "percentPrecision": 1,
+                "type": "serial",
+                "categoryField": "category",
+                "rotate": true,
+                "startDuration": 1,
+                "startEffect": "easeInSine",
+                "fontSize": 12,
                 "export": {
                     "enabled": true
                 },
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "trendLines": [],
+                "graphs": [
+                    {
+                        "balloonText": "[[category]]: [[value]]%",
+                        "colorField": "color",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-1",
+                        "labelOffset": 10,
+                        "labelPosition": "right",
+                        "labelText": "[[value]]%",
+                        "lineThickness": 0,
+                        "title": "graph 1",
+                        "type": "column",
+                        "valueField": "rate"
+                    }
+                ],
+                "guides": [
+                    {
+                        "above": true,
+                        "balloonColor": "#00B300",
+                        "boldLabel": true,
+                        "color": "#00B300",
+                        "dashLength": 8,
+                        "fillAlpha": 0,
+                        "fillColor": "#00B300",
+                        "fontSize": 12,
+                        "id": "Guide-1",
+                        "label": "35",
+                        "lineAlpha": 0.9,
+                        "lineColor": "#00B300",
+                        "lineThickness": 3,
+                        "tickLength": 0,
+                        "value": 35
+                    }
+                ],
+                "valueAxes": [
+                    {
+                        "id": "ValueAxis-1",
+                        "stackType": "regular",
+                        "title": ""
+                    }
+                ],
                 "allLabels": [],
                 "balloon": {},
-                "legend": {
-                    "enabled": true,
-                    "align": "center",
-                    "markerType": "circle",
-                    "valueAlign": "left",
-                    "valueText": ""
-                },
-                "titles": [],
+                "titles": [
+                    {
+                        "id": "Title-1",
+                        "size": 15,
+                        "text": "产品兑奖率"
+                    }
+                ],
                 "dataProvider": [
                     {
                         "category": "百威",
-                        "column-1": 6570
+                        "color": "#FD0000",
+                        "rate": "22"
                     },
                     {
                         "category": "百威纯生",
-                        "column-1": 4021
+                        "color": "#FE7E00",
+                        "rate": "43"
                     },
                     {
                         "category": "哈尔滨小麦王",
-                        "column-1": 4901
+                        "color": "#FEF001",
+                        "rate": "22"
                     },
                     {
                         "category": "哈尔滨冰爽",
-                        "column-1": 4210
+                        "color": "#01D85B",
+                        "rate": "47"
                     },
                     {
                         "category": "哈尔滨冰畅",
-                        "column-1": 2121
+                        "color": "#0188FE",
+                        "rate": "28"
                     },
                     {
                         "category": "哈尔滨清爽",
-                        "column-1": 2039
+                        "color": "#8900FE",
+                        "rate": "36"
                     },
-                    { 
-                        "category": "大富豪", 
-                        "column-1": 1039 
+                    {
+                        "category": "大富豪",
+                        "color": "#FF00E4",
+                        "rate": "56"
                     },
-                    { 
-                        "category": "雪津", 
-                        "column-1": 2039 
+                    {
+                        "category": "雪津",
+                        "color": "#000000",
+                        "rate": "39"
                     }
                 ]
             });
